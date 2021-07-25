@@ -1,0 +1,18 @@
+app:
+  name: "dispatchServer"
+  mode: "dev"
+  port: 8081
+
+log:
+  level: "debug"
+  filename: "dispatchServer.log"
+  max_size: 200
+  max_age: 30
+  max_backups: 7
+
+mysql:
+  host: "52.80.161.235"
+  port: 3306
+  user: "root"
+  password: "Hua643119"
+  dbname: "chjuanliu"
