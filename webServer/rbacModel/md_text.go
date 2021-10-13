@@ -2,8 +2,8 @@ package rbacModel
 
 import (
 	"fmt"
+	"github.com/thzll/gutils/webServer/dbOrm"
 	"go.uber.org/zap"
-	"goplot/common/dbOrm"
 )
 
 //网站界面文本分组 按节点路径命名

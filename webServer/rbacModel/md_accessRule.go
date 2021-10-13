@@ -2,8 +2,8 @@ package rbacModel
 
 import (
 	"fmt"
+	"github.com/thzll/gutils/webServer/dbOrm"
 	"go.uber.org/zap"
-	"goplot/common/dbOrm"
 	//"github.com/astaxie/beego/validation"
 )
 

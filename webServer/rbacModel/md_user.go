@@ -3,9 +3,9 @@ package rbacModel
 import (
 	"fmt"
 	"github.com/astaxie/beego/orm"
+	"github.com/thzll/gutils/myutils"
+	"github.com/thzll/gutils/webServer/dbOrm"
 	"go.uber.org/zap"
-	"goplot/common/dbOrm"
-	"goplot/common/myutils"
 	"log"
 	"time"
 )
