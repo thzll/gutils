@@ -1,7 +1,6 @@
 package logger
 
 import (
-	"ethos/common/settings"
 	"github.com/gin-gonic/gin"
 	"github.com/natefinch/lumberjack"
 	"go.uber.org/zap"
@@ -18,14 +17,32 @@ import (
 )
 
 // Init 初始化Logger
-func Init(cfg *settings.LogConfig, mode string) (err error) {
-	if cfg == nil {
-		cfg = &settings.LogConfig{}
-		cfg.Filename = "server.log"
-		cfg.MaxSize = 200
-		cfg.Level = "debug"
-		cfg.MaxAge = 30
-		cfg.MaxBackups = 7
+type LogConfig struct {
+	Filename   string
+	MaxSize    int
+	Level      string
+	MaxAge     int
+	MaxBackups int
+}
+
+func InitDefine(mode string) (err error) {
+	cfg := &LogConfig{
+		Filename:   "server.log",
+		MaxSize:    200,
+		Level:      "debug",
+		MaxAge:     30,
+		MaxBackups: 7,
+	}
+	return Init(cfg.Filename, cfg.MaxSize, cfg.Level, cfg.MaxBackups, cfg.MaxAge, mode)
+}
+
+func Init(filename string, maxSize int, level string, maxBackups int, maxAge int, mode string) (err error) {
+	cfg := &LogConfig{
+		Filename:   filename,
+		MaxSize:    maxSize,
+		Level:      level,
+		MaxAge:     maxAge,
+		MaxBackups: maxBackups,
 	}
 	log.Println(cfg)
 	writSyncer := getLogWriter(cfg.Filename, cfg.MaxSize, cfg.MaxBackups, cfg.MaxAge)
