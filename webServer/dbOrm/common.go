@@ -467,7 +467,13 @@ func snakeField(args map[string]interface{}) map[string]interface{} {
 	return newArgs
 }
 
-func Add(table InTable) (interface{}, int64, error) {
+func Add(table InTable) (int64, error) {
+	db := getDb(table.GetDbNameSpace()).Debug()
+	db = db.Model(table).Create(table)
+	return db.RowsAffected, db.Error
+}
+
+func Add2(table InTable) (interface{}, int64, error) {
 	db := getDb(table.GetDbNameSpace()).Debug()
 	db = db.Model(table).Create(table)
 	return db, db.RowsAffected, db.Error
