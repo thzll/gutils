@@ -467,10 +467,10 @@ func snakeField(args map[string]interface{}) map[string]interface{} {
 	return newArgs
 }
 
-func Add(table InTable) (int64, error) {
+func Add(table InTable) (interface{}, int64, error) {
 	db := getDb(table.GetDbNameSpace()).Debug()
 	db = db.Model(table).Create(table)
-	return db.RowsAffected, db.Error
+	return db, db.RowsAffected, db.Error
 }
 
 func InsertOrUpdate(table InTable, args map[string]interface{}) (int64, error) {
@@ -553,7 +553,7 @@ func GetByWhere(table InTable, where string, fields ...string) (int64, error) {
 	return db.RowsAffected, db.Error
 }
 
-//获取 通过更新时间
+// 获取 通过更新时间
 func GetListByUpdateTime(table InTable, vList interface{}, updateTime int64, fields ...string) (int64, error) {
 	db := getDb(table.GetDbNameSpace())
 	db = db.Model(table)
